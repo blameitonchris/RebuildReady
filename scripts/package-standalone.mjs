@@ -1,0 +1,3 @@
+import fs from 'node:fs/promises';
+const html=await fs.readFile('dist/index.html','utf8');const jsPath=html.match(/src="([^\"]+\.js)"/)[1];const cssPath=html.match(/href="([^\"]+\.css)"/)[1];const js=await fs.readFile(`dist${jsPath}`,'utf8');const css=(await fs.readFile(`dist${cssPath}`,'utf8')) .replace(/@import\s*(?:url\([^)]*\)|"[^"]*"|'[^']*')\s*;/g,'');
+const output=html.replace(/<script type="module"[^>]+><\/script>/,()=>`<script type="module">${js.replace(/<\/script/gi,'<\\/script')}</script>`).replace(/<link rel="stylesheet"[^>]+>/,()=>`<style>${css}</style>`);await fs.writeFile('RebuildReady.html',output);console.log('Created self-contained RebuildReady.html');

@@ -1,0 +1,478 @@
+{
+  "version": 2,
+  "role": "contractor",
+  "project": "Maple Street · Full basement restoration",
+  "business": "Example Restoration Co.",
+  "notes": "DEMONSTRATION ONLY: all rates are example prices, not local market estimates. Drainage length is entered independently of room perimeters. See each rental line for current equipment counts, days, and payment responsibility. Contractor review and readiness verification remain outstanding.",
+  "rooms": [
+    {
+      "id": "4b9abede-9b1c-4bff-a4d1-d3d00cd200b4",
+      "name": "Family room",
+      "length": "20",
+      "width": "15",
+      "height": "8",
+      "affected": "50",
+      "repairHeight": "4",
+      "wallDeduction": "12",
+      "floorDeduction": "0",
+      "trimDeduction": "3",
+      "removalHeight": "4",
+      "removalDeduction": "12"
+    },
+    {
+      "id": "c79207a8-59d2-4da2-822d-83d1af6ed0cb",
+      "name": "Laundry room",
+      "length": "10",
+      "width": "8",
+      "height": "8",
+      "affected": "18",
+      "repairHeight": "2",
+      "wallDeduction": "0",
+      "floorDeduction": "20",
+      "trimDeduction": "0",
+      "removalHeight": "4",
+      "removalDeduction": "0"
+    }
+  ],
+  "items": {
+    "drywall": {
+      "selected": true,
+      "quantity": "",
+      "material": "1.2",
+      "labor": "2.5",
+      "waste": "10"
+    },
+    "insulation": {
+      "selected": true,
+      "quantity": "",
+      "material": "0.9",
+      "labor": "1.1",
+      "waste": "10"
+    },
+    "flooring": {
+      "selected": true,
+      "quantity": "",
+      "material": "3.5",
+      "labor": "2.2",
+      "waste": "10"
+    },
+    "baseboards": {
+      "selected": true,
+      "quantity": "",
+      "material": "1.8",
+      "labor": "1.7",
+      "waste": "10"
+    },
+    "painting": {
+      "selected": true,
+      "quantity": "",
+      "material": "0.45",
+      "labor": "1.4",
+      "waste": "10"
+    },
+    "demolition": {
+      "selected": true,
+      "quantity": "",
+      "material": "0",
+      "labor": "1.2",
+      "waste": "0"
+    },
+    "debris": {
+      "selected": true,
+      "quantity": "",
+      "material": "0",
+      "labor": "275",
+      "waste": "0"
+    },
+    "studs": {
+      "selected": true,
+      "quantity": "6",
+      "material": "9",
+      "labor": "18",
+      "waste": "10"
+    }
+  },
+  "charges": [],
+  "percent": {
+    "overhead": "0",
+    "profit": "0",
+    "contingency": "0",
+    "tax": "0"
+  },
+  "stages": {
+    "water": {
+      "selected": true,
+      "items": {
+        "pump": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "85",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "hoses": {
+          "selected": true,
+          "quantity": "2",
+          "days": "1",
+          "rate": "8",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "otherEquipment": {
+          "selected": false,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "delivery": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "75",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "setup": {
+          "selected": true,
+          "quantity": "2",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "55",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "monitoring": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "55",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "removal": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "55",
+          "waste": "0",
+          "payer": "contractor"
+        }
+      }
+    },
+    "drying": {
+      "selected": true,
+      "items": {
+        "dehumidifiers": {
+          "selected": true,
+          "quantity": "2",
+          "days": "3",
+          "rate": "65",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "homeowner"
+        },
+        "airMovers": {
+          "selected": true,
+          "quantity": "3",
+          "days": "3",
+          "rate": "20",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "delivery": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "85",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "monitoring": {
+          "selected": true,
+          "quantity": "3",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "55",
+          "waste": "0",
+          "payer": "contractor"
+        }
+      },
+      "overlap": true
+    },
+    "demolition": {
+      "selected": true,
+      "items": {
+        "floorRemoval": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "1.5",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "insulationRemoval": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "0.5",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "trimRemoval": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "0.8",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "studRemoval": {
+          "selected": true,
+          "quantity": "4",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "8",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "dumpster": {
+          "selected": false,
+          "quantity": "1",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        }
+      }
+    },
+    "drainage": {
+      "selected": true,
+      "items": {
+        "cutting": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "3",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "slabRemoval": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "5",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "excavation": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "90",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "slabHauling": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "125",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "soilHauling": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "65",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "gravel": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "85",
+          "labor": "",
+          "waste": "10",
+          "payer": "contractor"
+        },
+        "pipe": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "4",
+          "labor": "8",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "fittings": {
+          "selected": true,
+          "quantity": "8",
+          "days": "1",
+          "rate": "",
+          "material": "12",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "basins": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "175",
+          "labor": "150",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "pumps": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "280",
+          "labor": "125",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "discharge": {
+          "selected": true,
+          "quantity": "35",
+          "days": "1",
+          "rate": "",
+          "material": "3",
+          "labor": "5",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "connections": {
+          "selected": true,
+          "quantity": "2",
+          "days": "1",
+          "rate": "",
+          "material": "20",
+          "labor": "25",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "backup": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "450",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "electrical": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "325",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        }
+      },
+      "length": "110",
+      "width": "18",
+      "depth": "15",
+      "slabThickness": "4",
+      "gravelFillDepth": "8",
+      "useSumpRule": true
+    },
+    "concrete": {
+      "selected": true,
+      "items": {
+        "concrete": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "180",
+          "labor": "120",
+          "waste": "10",
+          "payer": "contractor"
+        },
+        "delivery": {
+          "selected": true,
+          "quantity": "1",
+          "days": "1",
+          "rate": "200",
+          "material": "",
+          "labor": "",
+          "waste": "0",
+          "payer": "contractor"
+        },
+        "finishing": {
+          "selected": true,
+          "quantity": "",
+          "days": "1",
+          "rate": "",
+          "material": "",
+          "labor": "2.5",
+          "waste": "0",
+          "payer": "contractor"
+        }
+      },
+      "length": "",
+      "width": "18",
+      "thickness": "4"
+    },
+    "reconstruction": {
+      "selected": true,
+      "items": {}
+    }
+  },
+  "status": {
+    "dryingVerified": false,
+    "concreteReady": false
+  },
+  "example": true
+}

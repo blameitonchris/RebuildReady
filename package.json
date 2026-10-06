@@ -1,0 +1,21 @@
+{
+  "name": "rebuildready",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "test": "node --test",
+    "standalone": "npm run build && node scripts/package-standalone.mjs",
+    "test:browser": "node scripts/browser-check.mjs",
+    "test:design": "node scripts/design-check.mjs",
+    "test:restoration": "node scripts/restoration-browser-check.mjs",
+    "test:sharing": "node scripts/sharing-browser-check.mjs",
+    "deploy:pages": "node scripts/publish-pages.mjs"
+  },
+  "devDependencies": {
+    "vite": "^7.1.0",
+    "@playwright/test": "^1.55.0"
+  }
+}

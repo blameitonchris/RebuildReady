@@ -1,0 +1,44 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const browser=await chromium.launch({executablePath:'/usr/bin/chromium',args:['--no-sandbox']});
+try{
+ const page=await browser.newPage({acceptDownloads:true});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:5173');
+ await page.setContent('<iframe sandbox="allow-scripts allow-same-origin allow-downloads" src="http://127.0.0.1:5173" style="width:1100px;height:900px"></iframe>');
+ const frame=page.frameLocator('iframe');
+ await frame.getByRole('button',{name:'Explore an example project'}).click();
+ const state=await page.frames()[1].evaluate(()=>localStorage.getItem('basementquote-v1'));
+ for(let i=0;i<2;i++)await frame.locator('header').getByRole('button',{name:'Save estimate as PDF'}).click();
+ assert.match(await frame.locator('.print-feedback').textContent(),/Printing is blocked/);
+ assert(await frame.locator('.print-help').isVisible());
+ assert.equal(await page.frames()[1].evaluate(()=>document.activeElement.className),'print-help');
+ await frame.getByRole('button',{name:'Open printable estimate in new tab'}).click();
+ assert.match(await frame.locator('.print-feedback').textContent(),/New tabs are blocked/);
+ const downloadPromise=page.waitForEvent('download');await frame.getByRole('button',{name:'Download printable estimate (.html)'}).click();const download=await downloadPromise;
+ assert.match(download.suggestedFilename(),/^RebuildReady-.*Planning-Estimate\.html$/);
+ await download.saveAs('/tmp/RebuildReady-printable-estimate.html');const html=await readFile('/tmp/RebuildReady-printable-estimate.html','utf8');
+ for(const content of ['Contractor quote &amp; overall project budget','Homeowner-paid','Quote notes','What this plan covers','Plan your repairs. Price your rebuild.'])assert(html.includes(content),content);
+ assert(!html.includes('Export plan for RebuildReady'));assert(!html.includes('Your printable estimate is ready'));
+ assert.equal(await page.frames()[1].evaluate(()=>localStorage.getItem('basementquote-v1')),state);
+ // This managed test browser blocks file:// navigation; serve the exact downloaded bytes in a top-level tab.
+ const outside=await browser.newPage();await outside.route('http://127.0.0.1:5173/printable-test.html',route=>route.fulfill({contentType:'text/html',body:html}));await outside.goto('http://127.0.0.1:5173/printable-test.html');
+ await outside.evaluate(()=>{window.__beforePrint=0;window.addEventListener('beforeprint',()=>window.__beforePrint++);});
+ await outside.getByRole('button',{name:'Print / save PDF'}).click();assert.equal(await outside.evaluate(()=>window.__beforePrint),1);
+ assert.equal(await outside.locator('.summary-stage').count(),6);
+ await outside.pdf({path:'/tmp/RebuildReady-print-fallback.pdf',format:'A4',printBackground:true});
+ await outside.emulateMedia({media:'print'});assert(!(await outside.locator('.print-document-tools').isVisible()));
+ await page.goto('http://127.0.0.1:5173');await page.getByRole('button',{name:'Continue device draft'}).click();
+ await page.evaluate(()=>{window.__beforePrint=0;window.addEventListener('beforeprint',()=>window.__beforePrint++);});
+ await page.locator('header').getByRole('button',{name:'Save estimate as PDF'}).click();assert.equal(await page.evaluate(()=>window.__beforePrint),1);
+ const popupPromise=page.waitForEvent('popup');await page.getByRole('button',{name:'Open printable estimate in new tab'}).click();const popup=await popupPromise;await popup.waitForLoadState();assert.equal(await popup.locator('.summary-stage').count(),6);await popup.close();
+ await page.getByRole('button',{name:'Switch to contractor'}).click();
+ await page.getByRole('button',{name:'Measure',exact:false}).first().click();
+ await page.getByRole('textbox',{name:'Room name'}).first().fill('Incomplete test room');
+ await page.getByRole('spinbutton',{name:'Length · ft',exact:true}).first().fill('');
+ await page.locator('header').getByRole('button',{name:'Save estimate as PDF'}).click();
+ const incompleteDownloadPromise=page.waitForEvent('download');await page.getByRole('button',{name:'Download printable estimate (.html)'}).click();const incompleteDownload=await incompleteDownloadPromise;assert.match(incompleteDownload.suggestedFilename(),/Incomplete-Contractor-Estimate/);const incompleteHTML=await readFile(await incompleteDownload.path(),'utf8');assert(incompleteHTML.includes('Incomplete estimate'));assert(incompleteHTML.includes('Correct quantities, dimensions, and prices'));assert(incompleteHTML.includes('Incomplete test room'));
+ await page.screenshot({path:'/tmp/rebuildready-print-help.png',fullPage:false});
+ assert.equal(errors.length,0,errors.join('\n'));
+ console.log('Native PDF button, sandbox denial, repeat clicks, blocked popup, printable HTML download, outside-browser native print, six stages, PDF layout, and unchanged device draft passed.');
+}finally{await browser.close();}

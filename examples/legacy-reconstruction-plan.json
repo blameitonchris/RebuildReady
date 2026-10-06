@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "role": "homeowner",
+  "project": "Maple Street · Basement rebuild",
+  "business": "",
+  "notes": "Example project: four-foot wall repairs in the family room and two-foot repairs in the laundry. Confirm substrate condition and material choices during inspection.",
+  "rooms": [
+    {
+      "id": "c9be599a-670e-4de3-93ce-9234396216d5",
+      "name": "Family room",
+      "length": "20",
+      "width": "15",
+      "height": "8",
+      "affected": "50",
+      "repairHeight": "4",
+      "wallDeduction": "12",
+      "floorDeduction": "0",
+      "trimDeduction": "3"
+    },
+    {
+      "id": "e77d9046-a4d9-460f-a06e-09d2871bcb88",
+      "name": "Laundry room",
+      "length": "10",
+      "width": "8",
+      "height": "8",
+      "affected": "18",
+      "repairHeight": "2",
+      "wallDeduction": "0",
+      "floorDeduction": "20",
+      "trimDeduction": "0"
+    }
+  ],
+  "items": {
+    "drywall": {
+      "selected": true,
+      "quantity": "",
+      "material": "1.2",
+      "labor": "2.5",
+      "waste": "10"
+    },
+    "insulation": {
+      "selected": true,
+      "quantity": "",
+      "material": "0.9",
+      "labor": "1.1",
+      "waste": "10"
+    },
+    "flooring": {
+      "selected": true,
+      "quantity": "",
+      "material": "3.5",
+      "labor": "2.2",
+      "waste": "10"
+    },
+    "baseboards": {
+      "selected": true,
+      "quantity": "",
+      "material": "1.8",
+      "labor": "1.7",
+      "waste": "10"
+    },
+    "painting": {
+      "selected": true,
+      "quantity": "",
+      "material": "0.45",
+      "labor": "1.4",
+      "waste": "10"
+    },
+    "demolition": {
+      "selected": true,
+      "quantity": "",
+      "material": "0",
+      "labor": "1.2",
+      "waste": "0"
+    },
+    "debris": {
+      "selected": true,
+      "quantity": "",
+      "material": "0",
+      "labor": "275",
+      "waste": "0"
+    }
+  },
+  "charges": [],
+  "percent": {
+    "overhead": "0",
+    "profit": "0",
+    "contingency": "0",
+    "tax": "0"
+  },
+  "example": true
+}
