@@ -12,10 +12,19 @@
     "test:design": "node scripts/design-check.mjs",
     "test:restoration": "node scripts/restoration-browser-check.mjs",
     "test:sharing": "node scripts/sharing-browser-check.mjs",
-    "deploy:pages": "node scripts/publish-pages.mjs"
+    "deploy:pages": "node scripts/publish-pages.mjs",
+    "build:compatibility": "node scripts/build-compatibility.mjs",
+    "deploy:compatibility": "node scripts/publish-compatibility.mjs",
+    "test:compatibility": "node scripts/compatibility-check.mjs"
   },
   "devDependencies": {
-    "vite": "^7.1.0",
-    "@playwright/test": "^1.55.0"
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@playwright/test": "^1.55.0",
+    "acorn": "^8.19.0",
+    "vite": "^7.1.0"
+  },
+  "dependencies": {
+    "core-js": "^3.50.0"
   }
 }

@@ -10,6 +10,7 @@ function run(command,args,options={}){
  if(result.status!==0)throw new Error(`${command} failed: ${result.stderr||result.stdout}`);
  return result.stdout?.trim();
 }
+if(run('git',['branch','--show-current']).startsWith('compatibility/'))throw new Error('Live-site publishing is blocked on a compatibility branch. Use deploy:compatibility.');
 // Build only application files. Device drafts and imported plans live in browser storage.
 run('npm',['test'],{stdio:'inherit'});
 run('npm',['run','standalone'],{stdio:'inherit'});
