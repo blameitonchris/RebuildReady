@@ -18,9 +18,10 @@ export function readPlanFile(file){
   const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error('The file could not be read. Use Paste saved plan instead.'));reader.readAsText(file);
  });
 }
-export function reveal(element){
- if(!element)return;
+export function reveal(element,editing=false){
+ if(!element||!document.documentElement.contains(element))return;
  try{element.focus({preventScroll:true});}catch{element.focus();}
+ if(editing&&document.documentElement.classList.contains('no-flex-gap')){window.scrollTo(0,Math.max(0,element.getBoundingClientRect().top+window.pageYOffset-40));return;}
  try{element.scrollIntoView({block:'nearest'});}catch{element.scrollIntoView(false);}
 }
 export function downloadFile(content,type,filename){
@@ -44,8 +45,8 @@ export function installLayoutSupport(){
  if(!window.CSS||!CSS.supports||!CSS.supports('display','grid'))root.classList.add('no-grid');
  document.addEventListener('focusin',event=>{
   const target=event.target;if(!/^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName))return;
-  root.classList.add('editing-field');setTimeout(()=>reveal(target),350);
+  root.classList.add('editing-field');setTimeout(()=>reveal(target,true),350);
  });
  document.addEventListener('focusout',()=>root.classList.remove('editing-field'));
- window.addEventListener('resize',()=>{if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName))setTimeout(()=>reveal(document.activeElement),150);});
+ window.addEventListener('resize',()=>{if(/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName))setTimeout(()=>reveal(document.activeElement,true),150);});
 }
