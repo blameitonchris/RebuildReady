@@ -8,8 +8,8 @@ try{
  await page.evaluate(()=>{window.__originalSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw new Error('Storage unavailable')};});
  await page.getByRole('textbox',{name:'Room name',exact:true}).fill('Save button test');await page.getByRole('spinbutton',{name:'Length · ft',exact:true}).fill('22');
  await page.locator('.draft-save-top button').click();assert.match(await page.locator('.draft-save-top .draft-save-status').textContent(),/Could not save/);
- await page.evaluate(()=>Storage.prototype.setItem=window.__originalSetItem);await page.locator('.draft-save-top button').click();assert.match(await page.locator('.draft-save-top .draft-save-status').textContent(),/Saved on this device/);
- assert.equal(await page.evaluate(k=>JSON.parse(localStorage.getItem(k)).rooms[0].length,key),'22');assert.equal(await page.getByRole('textbox',{name:'Room name',exact:true}).inputValue(),'Save button test');
+ await page.evaluate(()=>Storage.prototype.setItem=window.__originalSetItem);await page.getByRole('spinbutton',{name:'Length · ft',exact:true}).evaluate(input=>input.value='23');await page.locator('.draft-save-top button').click();assert.match(await page.locator('.draft-save-top .draft-save-status').textContent(),/Saved on this device/);
+ assert.equal(await page.evaluate(k=>JSON.parse(localStorage.getItem(k)).rooms[0].length,key),'23');assert.equal(await page.getByRole('textbox',{name:'Room name',exact:true}).inputValue(),'Save button test');
  for(const role of ['homeowner','contractor']){
   if(role==='contractor')await page.getByRole('button',{name:'Switch to contractor'}).click();
   for(const step of [0,1,2,3]){await page.locator(`[data-step="${step}"]`).click();assert.equal(await page.getByRole('button',{name:'Save draft',exact:true}).count(),2);await page.locator('.draft-save-bottom button').click();assert.match(await page.locator('.draft-save-bottom .draft-save-status').textContent(),/Saved on this device/);}
