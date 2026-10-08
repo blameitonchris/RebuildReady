@@ -19,7 +19,7 @@ const temporary=await mkdtemp(path.join(tmpdir(),'rebuildready-pages-'));
 const environment={...process.env,GIT_INDEX_FILE:path.join(temporary,'index')};
 const git=(args,input)=>run('git',args,{env:environment,input});
 try{
- git(['read-tree','--empty']);
+ git(['read-tree',previous||'--empty']);
  for(const [name,content] of [['index.html',await readFile(path.join(root,'RebuildReady.html'),'utf8')],['.nojekyll','']]){
   const hash=git(['hash-object','-w','--stdin'],content);
   git(['update-index','--add','--cacheinfo',`100644,${hash},${name}`]);
