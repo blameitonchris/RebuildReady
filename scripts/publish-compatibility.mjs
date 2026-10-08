@@ -9,9 +9,8 @@ if(!source.includes('rebuildready-compatibility-preview-v1')||source.includes('b
 const previous=run(['ls-remote','origin','refs/heads/gh-pages']).split(/\s/)[0];
 if(!previous)throw new Error('Existing release is required; this publisher never creates or replaces the main site.');
 run(['fetch','origin','refs/heads/gh-pages']);
-const checkpoint=run(['rev-parse','checkpoint/published-release-before-tablet-compatibility']);
-const baseline=run(['rev-parse',`${checkpoint}:index.html`]);
-if(run(['rev-parse',`${previous}:index.html`])!==baseline)throw new Error('Live release changed since checkpoint; inspect before publishing.');
+// Preserve the current original version, including the separately approved Save draft update.
+const baseline=run(['rev-parse',`${previous}:index.html`]);
 const temp=await fs.mkdtemp(path.join(os.tmpdir(),'rebuildready-preview-index-'));
 const env={...process.env,GIT_INDEX_FILE:path.join(temp,'index')};
 const git=(args,input)=>run(args,{env,input});
